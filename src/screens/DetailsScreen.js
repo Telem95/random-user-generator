@@ -16,6 +16,7 @@ const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
 const DetailsScreen = ({ navigation }) => {
   const { state } = useContext(UserContext);
   const selectedUser = state[navigation.getParam("userIndex")];
+  const styles = useStyleSheet(themedStyle);
 
   const navigateBack = () => {
     navigation.goBack();
@@ -26,7 +27,7 @@ const DetailsScreen = ({ navigation }) => {
   );
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.container}>
       <TopNavigation
         title="Profile"
         alignment="center"
@@ -37,5 +38,12 @@ const DetailsScreen = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+
+const themedStyle = StyleService.create({
+  container: {
+    flex: 1,
+    backgroundColor: "background-basic-color-2",
+  },
+});
 
 export default DetailsScreen;

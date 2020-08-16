@@ -5,7 +5,6 @@ import {
   StyleService,
   Button,
   Divider,
-  Layout,
   TopNavigation,
   List,
   Icon,
@@ -18,31 +17,27 @@ const HomeScreen = ({ navigation }) => {
   const styles = useStyleSheet(themedStyle);
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <TopNavigation title="Random User Generator" alignment="center" />
+    <SafeAreaView style={styles.container}>
+      <TopNavigation title="Random Users Generator" alignment="center" />
       <Divider />
-      <Layout style={styles.layout}>
-        <List
-          style={styles.list}
-          data={state}
-          keyExtractor={(item) => item.login.md5}
-          renderItem={({ item, index }) => {
-            return <UserListItem user={item} index={index} />;
-          }}
-          ItemSeparatorComponent={Divider}
-        />
-        <Button onPress={getUsers}>Generate Different Users</Button>
-      </Layout>
+      <List
+        style={styles.list}
+        data={state}
+        keyExtractor={(item) => item.login.md5}
+        renderItem={({ item, index }) => {
+          return <UserListItem user={item} index={index} />;
+        }}
+        ItemSeparatorComponent={Divider}
+      />
+      <Button onPress={getUsers}>Generate Different Users</Button>
     </SafeAreaView>
   );
 };
 
 const themedStyle = StyleService.create({
-  layout: {
+  container: {
     flex: 1,
-  },
-  list: {
-    flex: 1,
+    backgroundColor: "background-basic-color-2",
   },
 });
 
